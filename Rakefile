@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # rakefile
 require 'rspec/core/rake_task'
 
@@ -5,4 +7,4 @@ RSpec::Core::RakeTask.new :specs do |task|
   task.pattern = Dir['spec/**/*_spec.rb']
 end
 
-task :default => ['specs']
+task default: ['specs']

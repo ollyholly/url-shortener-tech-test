@@ -20,15 +20,15 @@ describe UrlShortener do
     end
   end
 
-    describe 'POST to /' do
+  describe 'POST to /' do
     it 'returns ok and responds with a JSON' do
-      data = { 'url': "https://www.farmdrop.com/" }
-      
-      post '/', data.to_json, "CONTENT_TYPE" => "application/json"
+      data = { 'url': 'https://www.farmdrop.com/' }
+
+      post '/', data.to_json, 'CONTENT_TYPE' => 'application/json'
       expect(last_response).to be_ok
       response = JSON.parse(last_response.body)
-      expect(response).to have_key("url")
-      expect(response["url"]).to eql("https://www.farmdrop.com/")
+      expect(response).to have_key('url')
+      expect(response['url']).to eql('https://www.farmdrop.com/')
     end
   end
 end

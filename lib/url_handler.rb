@@ -6,17 +6,19 @@ class UrlHandler
   def self.shorten(original_url)
     validated_url = handle_prefix(original_url)
     short_url = encode(validated_url)
-    # check for http, https – add it if missing
-    # create a short encoded url
-    # save to the storage
-    # return JSON with short and original URL
+    @links[short_url] = validated_url
     { "short_url": short_url, "url": validated_url }
+  end
+
+  def self.find(short_url)
+    { "url": @links[short_url] }
   end
 
   def self.handle_prefix(link)
     if link[0..6] != 'http://' && link[0..7] != 'https://'
       return 'http://' + link
     end
+
     link
   end
 
@@ -25,6 +27,4 @@ class UrlHandler
   end
 
   private
-  
-
 end

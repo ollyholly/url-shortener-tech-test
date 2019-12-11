@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'sinatra'
 require 'json'
 require 'base64'
@@ -14,9 +15,8 @@ class UrlShortener < Sinatra::Base
   post '/' do
     link = JSON.parse(request.body.read)['url']
     UrlHandler.shorten(link)
-    {"url": link}.to_json
+    { "url": link }.to_json
   end
 
   run! if app_file == $PROGRAM_NAME
 end
-

@@ -13,7 +13,6 @@ curl localhost:4000 -XPOST -d '{ "url": "http://www.farmdrop.com" }'
 { "short_url": "/abc123", "url": "http://www.farmdrop.com" }
 ```
 
-
 - When you send a GET request to a previously returned URL, it should redirect
   to the POSTed URL, as shown in the following curl example:
 

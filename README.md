@@ -1,3 +1,23 @@
+## Plan
+
+- Create a POST route that parses request body and saves original URL
+- Generate short URL – split original URL remove www, http, https
+- Process original URL, check if it has http or https and www, add http if it's missing
+- Save short and original URL to a memory
+- Respond with JSON
+- Create GET routes with custom URL
+- Take short URL from params and look for original URL in the memory
+- If original URL is found, redirect to it and return a JSON body with short & original URL
+
+Additional
+
+- create HTML form to send AJAX requests to get and display short URL
+
+Edge cases
+
+- original URL doesn't have .something
+- original URL doesn't have http, www, https
+
 # Url Shortener Code Test
 
 Without using an external database, we'd like you to create a URL shortening

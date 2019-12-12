@@ -6,19 +6,6 @@ describe UrlShortener do
   include Rack::Test::Methods
 
   let (:app) { UrlShortener.new }
-  # let (:url) { "https://www.farmdrop.com/" }
-
-  describe 'GET to /' do
-    it 'Responds status 200 OK' do
-      get '/'
-      expect(last_response.status).to eq 200
-    end
-
-    it 'Sends a response with a body' do
-      get '/'
-      expect(last_response.body).to eq 'Lets shorten some URLs!'
-    end
-  end
 
   describe 'POST to /' do
     it 'returns ok and responds with a JSON' do
@@ -33,15 +20,15 @@ describe UrlShortener do
   end
 
   describe 'GET to /:short_url' do
-      it "redirects to original URL from short URL" do
-        data = { 'url': 'https://www.farmdrop.com/' }
-        post '/', data.to_json, 'CONTENT_TYPE' => 'application/json'
-        response = JSON.parse(last_response.body)
-        short_url = response["short_url"]
-        get "/#{short_url}"
-        expect(last_response).to be_redirect
-        expect(last_response.location).to eql('https://www.farmdrop.com/')
-        expect(last_response.body).to eql(data.to_json)
+    it "redirects to original URL from short URL" do
+      data = { 'url': 'https://www.farmdrops.com/' }
+      post '/', data.to_json, 'CONTENT_TYPE' => 'application/json'
+      response = JSON.parse(last_response.body)
+      short_url = response["short_url"]
+      get "/#{short_url}"
+      expect(last_response).to be_redirect
+      expect(last_response.location).to eql('https://www.farmdrops.com/')
+      expect(last_response.body).to eql(data.to_json)
     end
   end
 end

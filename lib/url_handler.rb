@@ -7,11 +7,11 @@ class UrlHandler
     validated_url = handle_prefix(original_url)
     short_url = encode(validated_url)
     @links[short_url] = validated_url
-    { "short_url": short_url, "url": validated_url }
+    { short_url: short_url, url: validated_url }.to_json
   end
 
   def self.find(short_url)
-    { "url": @links[short_url] }
+    { url: @links[short_url] }.to_json
   end
 
   def self.handle_prefix(link)

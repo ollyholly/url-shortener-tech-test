@@ -7,7 +7,7 @@ A URL shortening servise that creates short version of a URL that persists and c
 [How to Install](#how-to-install) | [How to Use](#how-to-use) | [Tests](#tests) | [Approach](#approach) | [Original Instructions](#original-instructions) |
 </p>
 
-<br><br>
+<br>
 
 ## How to Install
 
@@ -17,7 +17,7 @@ cd url-shortener-tech-tes
 bundle install
 ```
 
-<br><br>
+<br>
 
 ## How to Use
 
@@ -52,6 +52,7 @@ response
 { "url": "http://www.farmdrop.com" }
 ```
 
+<br>
 ![Example](./public/example.png)
 
 <br><br>
@@ -68,8 +69,9 @@ Run `Rspec`
 
 ### Structure
 
-app.rb – UrlShortener – controller with POST route to submit original URL
-url_handler.rb – UrlHandler – singleton class that validates, shortens and saves the shorten URL together with original one.
+**app.rb** – UrlShortener – controller with POST route to submit original URL
+
+**url_handler.rb** – UrlHandler – singleton class that validates, shortens and saves the shorten URL together with original one.
 
 ### Plan
 
@@ -82,11 +84,11 @@ url_handler.rb – UrlHandler – singleton class that validates, shortens and s
 - Take short URL from params of the route and look for original URL in the memory
 - If original URL is found, redirect to it and return a JSON body with short & original URL
 
-Additional features (not implemented 🚧)
+**Additional features** (not implemented 🚧)
 
 - create HTML form to send AJAX requests to get and display short URL without refreshing the page
 
-Edge cases & error handling
+**Edge cases & error handling**
 
 - original URL doesn't have http, www, https ✅
 - original URL is invalid 🚧

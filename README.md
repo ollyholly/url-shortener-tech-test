@@ -53,6 +53,7 @@ response
 ```
 
 <br>
+
 ![Example](./public/example.png)
 
 <br><br>

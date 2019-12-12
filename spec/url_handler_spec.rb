@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'base64'
+
 require 'url_handler'
 
 describe UrlHandler do

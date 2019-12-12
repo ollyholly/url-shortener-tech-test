@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'base64'
+
 class UrlHandler
   @links = {}
 
@@ -25,5 +27,4 @@ class UrlHandler
   def self.encode(link)
     Base64.encode64(link)[0..5]
   end
-
 end

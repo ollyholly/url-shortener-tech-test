@@ -1,24 +1,101 @@
-## Plan
+# Url Shortener Code Test
+
+A URL shortening servise that creates short version of a URL that persists and could be shareable between different clients while the server is running.
+
+<p align="center">
+		 
+[How to Install](#how-to-install) | [How to Use](#how-to-use) | [Tests](#tests) | [Approach](#approach) | [Original Instructions](#original-instructions) |
+</p>
+
+<br><br>
+
+## How to Install
+
+```
+git clone git@github.com:ollyholly/url-shortener-tech-test.git
+cd url-shortener-tech-tes
+bundle install
+```
+
+<br><br>
+
+## How to Use
+
+Start a server by running `rackup -p 4000`.
+
+1. To shorten a URL send a POST request with original link
+
+```
+curl localhost:4000 -XPOST -d '{ "url": "http://www.farmdrop.com" }'
+```
+
+responce
+
+```
+{ "short_url": "/abc123", "url": "http://www.farmdrop.com" }
+```
+
+2. To use short URL to get redirected to original link send a GET request to short URL route
+
+```
+curl -v localhost:4000/abc123
+```
+
+response
+
+```
+...
+< HTTP/1.1 301 Moved Permanently
+...
+< Location: http://www.farmdrop.com
+...
+{ "url": "http://www.farmdrop.com" }
+```
+
+![Example](./public/example.png)
+
+<br><br>
+
+## Tests
+
+Run `Rspec`
+
+![Tests](./public/tests.png)
+
+<br><br>
+
+## Approach
+
+### Structure
+
+app.rb – UrlShortener – controller with POST route to submit original URL
+url_handler.rb – UrlHandler – singleton class that validates, shortens and saves the shorten URL together with original one.
+
+### Plan
 
 - Create a POST route that parses request body and saves original URL
-- Generate short URL – split original URL remove www, http, https
-- Process original URL, check if it has http or https and www, add http if it's missing
+- Check if original URL has prefix (http, https), if not – add 'http://'
+- Generate short URL by encoding original link to Base64
 - Save short and original URL to a memory
-- Respond with JSON
+- Return response with short and original URL in JSON format
 - Create GET routes with custom URL
-- Take short URL from params and look for original URL in the memory
+- Take short URL from params of the route and look for original URL in the memory
 - If original URL is found, redirect to it and return a JSON body with short & original URL
 
-Additional
+Additional features (not implemented 🚧)
 
-- create HTML form to send AJAX requests to get and display short URL
+- create HTML form to send AJAX requests to get and display short URL without refreshing the page
 
-Edge cases
+Edge cases & error handling
 
-- original URL doesn't have .something
-- original URL doesn't have http, www, https
+- original URL doesn't have http, www, https ✅
+- original URL is invalid 🚧
+- error if original URL post request has empty body 🚧
+- error if short URL is not found 🚧
 
-# Url Shortener Code Test
+<br><br>
+
+## Original Instructions
 
 Without using an external database, we'd like you to create a URL shortening
 service. The URLs do not need to persist between restarts, but should be
@@ -66,19 +143,3 @@ Bonus points:
 - If you'd like to show off your frontend skills, you could create a simple
   frontend that can create and display shortened URLs without reloading the
   page.
-
-## Submission
-
-Please clone this repository, write some code and update this README with a
-guide of how to run it.
-
-Either send us a link to the repository on somewhere like github or bitbucket
-(bitbucket has free private repositories) or send us a git bundle.
-
-    git bundle create yournamehere-url-shortener-test.bundle master
-
-And send us the resulting `yournamehere-url-shortener-test.bundle` file.
-
-This `.bundle` file can be cloned using:
-
-    git bundle clone bundle-filename.bundle -b master directory-name

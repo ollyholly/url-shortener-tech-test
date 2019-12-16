@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 ruby '2.6.3'
 
+gem 'pry-byebug'
 gem 'rack'
 gem 'rake'
 gem 'rubocop', '0.71.0'

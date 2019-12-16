@@ -17,6 +17,18 @@ describe UrlShortener do
       expect(response).to have_key('url')
       expect(response['url']).to eql('https://www.farmdrop.com/')
     end
+
+    it 'return 400 status when received empty body' do
+       data = {  }
+      post '/', data.to_json,'CONTENT_TYPE' => 'application/json'
+
+      expect(last_response.status).to eql(400)
+    end
+
+    it 'return 400 status when received no body' do
+      post '/'
+      expect(last_response.status).to eql(400)
+    end
   end
 
   describe 'GET to /:short_url' do
@@ -31,4 +43,6 @@ describe UrlShortener do
       expect(last_response.body).to eql(data.to_json)
     end
   end
+
+
 end
